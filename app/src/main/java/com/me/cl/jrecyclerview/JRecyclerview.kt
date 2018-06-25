@@ -34,8 +34,6 @@ class JRecyclerview @JvmOverloads constructor(
                 }
                 false
             }
-
-
         }
         defaultFootView.apply {
             setLoadingDoneHint(loadDoneHint)
@@ -95,5 +93,17 @@ class JRecyclerview @JvmOverloads constructor(
             return true
         }
         return false
+    }
+
+    fun notifyItemRangeInserted(positionStart: Int, itemCount: Int) {
+        adapter.notifyItemRangeInserted(headers_includingRefreshCount + positionStart, itemCount)
+    }
+
+    fun notifyItemRangeRemoved(positionStart: Int, itemCount: Int) {
+        adapter.notifyItemRangeRemoved(headers_includingRefreshCount + positionStart, itemCount)
+    }
+
+    fun notifyItemRangeChanged(positionStart: Int, itemCount: Int) {
+        adapter.notifyItemRangeChanged(headers_includingRefreshCount + positionStart, itemCount)
     }
 }
