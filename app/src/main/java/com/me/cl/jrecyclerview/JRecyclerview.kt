@@ -27,7 +27,7 @@ class JRecyclerview @JvmOverloads constructor(
         super.onAttachedToWindow()
         if (getParent() is SwipeRefreshLayout) {
             setPullRefreshEnabled(false)
-            parent = getParent() as SwipeRefreshLayout?
+            parent = getParent() as? SwipeRefreshLayout
             parent?.setOnChildScrollUpCallback { parent, child ->
                 if (child is JRecyclerview) {
                     return@setOnChildScrollUpCallback !isOnTop(child)
@@ -88,7 +88,7 @@ class JRecyclerview @JvmOverloads constructor(
     }
 
     private fun isOnTop(rc: RecyclerView): Boolean {
-        val lm = rc.layoutManager as LinearLayoutManager?
+        val lm = rc.layoutManager as? LinearLayoutManager
         if (lm?.findViewByPosition(lm.findFirstVisibleItemPosition())?.top == 0 && lm.findFirstVisibleItemPosition() == headers_includingRefreshCount) {
             return true
         }
